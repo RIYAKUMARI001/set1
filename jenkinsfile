@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout code'){
             steps{
-              git url:https:"//github.com/RIYAKUMARI001/set1.git" branch: "master"
+              git url:https://github.com/RIYAKUMARI001/set1.git branch: "master"
                 }
              }
           stage('Install'){
