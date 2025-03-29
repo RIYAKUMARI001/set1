@@ -7,26 +7,28 @@ pipeline {
        
           stage('Install'){
             steps{
+
               bat  'npm install'
+
               }
             }
-        stage('Build') {
+        stage('build') {
             steps {
+script{
                 bat 'npm run build'
+}
             }
         }
-        stage('Test') {
+        stage('test') {
             steps {
+script{
                 bat 'npm test || echo "No tests defined"'
+}
             }
         }
-        stage('Run JAR') {
-            steps {
-                script {
-                    def output = bat(script: 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar', returnStdout: true)
-                    echo "Output from JAR: ${output}"
-                }
-            }
-        }
+       
+                
+            
+        
     }
 }
