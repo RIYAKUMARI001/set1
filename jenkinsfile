@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    tools {
+        maven 'type'
+    }
+    stages {
+        stage('Checkout code'){
+            steps{
+              git url:https:"//github.com/RIYAKUMARI001/set1.git" branch: "master"
+                }
+             }
+        stage('Build') {
+            steps {
+                bat 'npm run build'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'npm test || echo "No tests defined"'
+            }
+        }
+        stage('Run JAR') {
+            steps {
+                script {
+                    def output = bat(script: 'java -jar target/simple-java-project-1.0-SNAPSHOT.jar', returnStdout: true)
+                    echo "Output from JAR: ${output}"
+                }
+            }
+        }
+    }
+}
